@@ -1,0 +1,24 @@
+{
+  "name": "xcraft-core-wizard",
+  "version": "0.1.0",
+  "description": "Xcraft wizard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xcraft",
+    "wizard"
+  ],
+  "repository": {
+    "type": "file",
+    "url": "lib/xcraft-core-wizard"
+  },
+  "author": "Mathieu Schroeter",
+  "license": "MIT",
+  "dependencies": {
+    "clone": "^1.0.2",
+    "traverse": "^0.6.6"
+  },
+  "devDependencies": {}
+}
