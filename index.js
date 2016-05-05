@@ -29,3 +29,52 @@ exports.stringify = function (wizardPath) {
     .replace (/("__begin__|__end__")/g, '')
     .replace (/\\n[ ]*/g, '\n');
 };
+
+exports.commandify = function (module) {
+  const cmd = {};
+  const rc  = {};
+
+  function tryPushFunction (fieldDef, category, funcName) {
+    if (!fieldDef.hasOwnProperty (funcName)) {
+      return;
+    }
+
+    /* generating cmd and result event name */
+    const cmdName = category + '.' + fieldDef.name + '.' + funcName;
+    const evtName = `wizard.${category}.${fieldDef.name}.${funcName}.finished`;
+
+    cmd[cmdName] = function (msg, response) {
+      /* execute function */
+      const result = fieldDef[funcName] (msg.data);
+      response.events.send (evtName, result);
+    };
+    rc[cmdName] = {
+      parallel: true
+    };
+  }
+
+  function extractCommandsHandlers (category) {
+    const fields = module[category];
+
+    Object.keys (fields).forEach (function (index) {
+      const fieldDef = fields[index];
+
+      tryPushFunction (fieldDef, category, 'validate');
+      tryPushFunction (fieldDef, category, 'choices');
+      tryPushFunction (fieldDef, category, 'filter');
+      tryPushFunction (fieldDef, category, 'when');
+    });
+  }
+
+  /* extacts cmds handlers for each category */
+  Object.keys (module).forEach (function (exp) {
+    if (exp !== 'xcraftCommands') {
+      extractCommandsHandlers (exp);
+    }
+  });
+
+  return {
+    handlers: cmd,
+    rc:       rc
+  };
+};
