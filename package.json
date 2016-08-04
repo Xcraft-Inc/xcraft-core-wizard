@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Xcraft wizard",
   "main": "index.js",
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,8 +14,8 @@
     "wizard"
   ],
   "repository": {
-    "type": "file",
-    "url": "lib/xcraft-core-wizard"
+    "type": "git",
+    "url": "git+https://github.com/Xcraft-Inc/xcraft-core-wizard.git"
   },
   "author": "Mathieu Schroeter",
   "license": "MIT",
@@ -20,5 +23,8 @@
     "clone": "^1.0.2",
     "traverse": "^0.6.6"
   },
-  "devDependencies": {}
+  "bugs": {
+    "url": "https://github.com/Xcraft-Inc/xcraft-core-wizard/issues"
+  },
+  "homepage": "https://github.com/Xcraft-Inc/xcraft-core-wizard#readme"
 }
