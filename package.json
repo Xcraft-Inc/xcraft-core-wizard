@@ -1,6 +1,6 @@
 {
   "name": "xcraft-core-wizard",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Xcraft wizard",
   "main": "index.js",
   "engines": {
