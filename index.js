@@ -1,8 +1,7 @@
 'use strict';
 
-const clone    = require ('clone');
+const clone = require ('clone');
 const traverse = require ('traverse');
-
 
 exports.stringify = function (wizardPath) {
   const wizard = clone (require (wizardPath), false);
@@ -13,7 +12,8 @@ exports.stringify = function (wizardPath) {
       return;
     }
     if (typeof value === 'function') {
-      this.update (`__begin__
+      this.update (
+        `__begin__
         function (arg) {
           var done = this.async ();
           const cmd = 'wizard.${this.path[0]}.${wizard[this.path[0]][this.path[1]].name}.${this.key}';
@@ -21,7 +21,8 @@ exports.stringify = function (wizardPath) {
             done (res.data);
           });
         }
-      __end__`);
+      __end__`
+      );
     }
   });
 
@@ -32,7 +33,7 @@ exports.stringify = function (wizardPath) {
 
 exports.commandify = function (module) {
   const cmd = {};
-  const rc  = {};
+  const rc = {};
 
   function tryPushFunction (fieldDef, category, funcName) {
     if (!fieldDef.hasOwnProperty (funcName)) {
@@ -49,7 +50,7 @@ exports.commandify = function (module) {
       response.events.send (evtName, result);
     };
     rc[cmdName] = {
-      parallel: true
+      parallel: true,
     };
   }
 
@@ -75,6 +76,6 @@ exports.commandify = function (module) {
 
   return {
     handlers: cmd,
-    rc:       rc
+    rc: rc,
   };
 };
