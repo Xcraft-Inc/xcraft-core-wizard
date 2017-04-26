@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/Xcraft-Inc/xcraft-core-wizard/issues"
   },
-  "homepage": "https://github.com/Xcraft-Inc/xcraft-core-wizard#readme"
+  "homepage": "https://github.com/Xcraft-Inc/xcraft-core-wizard#readme",
+  "devDependencies": {
+    "xcraft-dev-rules": "^0.1.6"
+  }
 }
