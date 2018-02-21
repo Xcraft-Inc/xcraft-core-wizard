@@ -1,3 +1,3 @@
 # xcraft-core-wizard
-Xcraft wizard
 
+Xcraft wizard
