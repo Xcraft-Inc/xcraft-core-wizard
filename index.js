@@ -46,10 +46,10 @@ exports.commandify = function(module) {
     const cmdName = category + '.' + fieldDef.name + '.' + funcName;
     const evtName = `wizard.${category}.${fieldDef.name}.${funcName}`;
 
-    cmd[cmdName] = function(msg, response) {
+    cmd[cmdName] = function(msg, resp) {
       /* execute function */
       const result = fieldDef[funcName](msg.data);
-      response.events.send(`${evtName}.${msg.id}.finished`, result);
+      resp.events.send(`${evtName}.${msg.id}.finished`, result);
     };
     rc[cmdName] = {
       parallel: true,
