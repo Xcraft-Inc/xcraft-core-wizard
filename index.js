@@ -3,11 +3,11 @@
 const clone = require('clone');
 const traverse = require('traverse');
 
-exports.stringify = function(wizardPath) {
+exports.stringify = function (wizardPath) {
   const wizard = clone(require(wizardPath), false);
 
   /* replace all func by a promise */
-  traverse(wizard).forEach(function(value) {
+  traverse(wizard).forEach(function (value) {
     if (this.key === 'xcraftCommands') {
       return;
     }
@@ -33,7 +33,7 @@ exports.stringify = function(wizardPath) {
     .replace(/\\n[ ]*/g, '\n');
 };
 
-exports.commandify = function(module) {
+exports.commandify = function (module) {
   const cmd = {};
   const rc = {};
 
@@ -46,7 +46,7 @@ exports.commandify = function(module) {
     const cmdName = category + '.' + fieldDef.name + '.' + funcName;
     const evtName = `wizard.${category}.${fieldDef.name}.${funcName}`;
 
-    cmd[cmdName] = function(msg, resp) {
+    cmd[cmdName] = function (msg, resp) {
       /* execute function */
       const result = fieldDef[funcName](msg.data);
       resp.events.send(`${evtName}.${msg.id}.finished`, result);
@@ -59,7 +59,7 @@ exports.commandify = function(module) {
   function extractCommandsHandlers(category) {
     const fields = module[category];
 
-    Object.keys(fields).forEach(function(index) {
+    Object.keys(fields).forEach(function (index) {
       const fieldDef = fields[index];
 
       tryPushFunction(fieldDef, category, 'validate');
@@ -70,7 +70,7 @@ exports.commandify = function(module) {
   }
 
   /* extacts cmds handlers for each category */
-  Object.keys(module).forEach(function(exp) {
+  Object.keys(module).forEach(function (exp) {
     if (exp !== 'xcraftCommands') {
       extractCommandsHandlers(exp);
     }
