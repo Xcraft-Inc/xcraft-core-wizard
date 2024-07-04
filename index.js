@@ -1,7 +1,7 @@
 'use strict';
 
 const clone = require('clone');
-const traverse = require('traverse');
+const traverse = require('xcraft-traverse');
 
 exports.stringify = function (wizardPath) {
   const wizard = clone(require(wizardPath), false);

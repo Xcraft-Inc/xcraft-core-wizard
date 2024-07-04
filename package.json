@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "clone": "^2.1.2",
-    "traverse": "^0.6.6"
+    "xcraft-traverse": "^0.7.0"
   },
   "bugs": {
     "url": "https://github.com/Xcraft-Inc/xcraft-core-wizard/issues"
